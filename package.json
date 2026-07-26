@@ -18,9 +18,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/felix-syl/md-reader-paper.git"
+    "url": "https://github.com/FelixSongx/md-reader-paper.git"
   },
-  "homepage": "https://github.com/felix-syl/md-reader-paper",
+  "homepage": "https://github.com/FelixSongx/md-reader-paper",
   "main": "./extension.js",
   "contributes": {
     "customEditors": [
