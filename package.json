@@ -2,7 +2,7 @@
   "name": "md-reader",
   "displayName": "MD Reader Paper",
   "description": "PDF-like read-only Markdown reader: A4 paper layout, pink bold, teal headings, KaTeX math.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "Yongli",
   "author": {
     "name": "Felix Song",
