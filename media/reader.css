@@ -1,0 +1,135 @@
+:root {
+  --accent-pink: #e3506e;       /* **bold** color */
+  --accent-pink-bg: #ffe9ee;    /* code background */
+  --accent-pink-fg: #d63384;    /* code foreground */
+  --accent-teal: #4FB0C4;       /* h3/h4 color */
+  --text: #2c3e50;
+  --text-strong: #1a1a1a;
+  --border: #e1e4e8;
+  --table-header-bg: #f6f8fa;
+  --paper: #ffffff;
+  --workspace: #ececec;
+}
+html, body {
+  margin: 0; padding: 0;
+  background: var(--workspace);
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+               "Source Han Sans SC", "Noto Sans CJK SC",
+               -apple-system, "Segoe UI", sans-serif;
+}
+.toolbar {
+  position: sticky; top: 0; z-index: 10;
+  background: #323639; color: #eee;
+  padding: 8px 16px;
+  display: flex; gap: 12px; align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,.3);
+  user-select: none;
+}
+.toolbar .title {
+  opacity: .85; font-size: 13px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 24px auto;
+  padding: 22mm 18mm;
+  background: var(--paper);
+  box-shadow: 0 2px 14px rgba(0,0,0,.18);
+  box-sizing: border-box;
+  color: var(--text);
+  font-size: 10.8pt;
+  line-height: 1.78;
+  word-wrap: break-word;
+}
+
+/* Headings — sans-serif, no underline */
+.page h1, .page h2, .page h3, .page h4, .page h5, .page h6 {
+  font-weight: 700;
+  line-height: 1.35;
+  margin: 1.4em 0 .55em;
+}
+.page h1 { font-size: 22pt; color: var(--text-strong); margin-top: 0; }
+.page h2 { font-size: 16pt; color: var(--text-strong); margin-top: 1.6em; }
+.page h3 { font-size: 13pt; color: var(--accent-teal); }
+.page h4 { font-size: 11.5pt; color: var(--accent-teal); }
+.page h5, .page h6 { font-size: 11pt; color: var(--accent-teal); }
+
+.page p { margin: .55em 0; }
+
+/* The hallmark: bold renders pink */
+.page strong, .page b { color: var(--accent-pink); font-weight: 700; }
+
+/* Inline code as pink pill */
+.page code {
+  background: var(--accent-pink-bg);
+  color: var(--accent-pink-fg);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-family: "SF Mono", "JetBrains Mono", Consolas, Menlo, "Courier New", monospace;
+  font-size: 9.8pt;
+  word-break: break-all;
+}
+.page pre {
+  background: #f7f8fa; border: 1px solid var(--border);
+  border-radius: 5px; padding: 12px 14px; overflow-x: auto;
+  line-height: 1.55;
+}
+.page pre code {
+  background: transparent; color: #333; padding: 0;
+  font-size: 9.8pt; word-break: normal;
+}
+
+.page a { color: #2563eb; text-decoration: none; }
+.page a:hover { text-decoration: underline; }
+
+.page ul, .page ol { padding-left: 1.6em; margin: .4em 0; }
+.page li { margin: .15em 0; }
+.page ul li::marker { color: #999; }
+.page ol li::marker { color: #888; font-weight: 500; }
+
+.page blockquote {
+  margin: 1em 0;
+  padding: .5em 1em;
+  border-left: 3px solid var(--accent-teal);
+  background: #f4fafc;
+  color: #4a6068;
+}
+.page blockquote p { margin: .25em 0; }
+
+/* Tables — clean, light borders, gray header, no zebra */
+.table-wrap { overflow-x: auto; margin: 1em 0; }
+.page table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: auto;
+  font-size: 9.8pt;
+  line-height: 1.5;
+}
+.page th, .page td {
+  border: 1px solid var(--border);
+  padding: 5px 9px;
+  text-align: left;
+  vertical-align: middle;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+.page th {
+  background: var(--table-header-bg);
+  font-weight: 600;
+  color: var(--text-strong);
+  white-space: nowrap;
+}
+.page td strong { color: var(--accent-pink); }
+.page td code { font-size: 9.2pt; padding: 0 4px; }
+
+.page hr { border: none; border-top: 1px solid #d8dde2; margin: 1.6em 0; }
+
+.page img { max-width: 100%; height: auto; }
+
+@media print {
+  body { background: #fff; }
+  .toolbar { display: none; }
+  .page { margin: 0; box-shadow: none; padding: 18mm 16mm; }
+}

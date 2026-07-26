@@ -1,0 +1,53 @@
+{
+  "name": "md-reader",
+  "displayName": "MD Reader Paper",
+  "description": "PDF-like read-only Markdown reader: A4 paper layout, pink bold, teal headings, KaTeX math.",
+  "version": "1.0.0",
+  "publisher": "Yongli",
+  "author": {
+    "name": "Felix Song",
+    "email": "sylxingkong@gmail.com"
+  },
+  "license": "MIT",
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/felix-syl/md-reader-paper.git"
+  },
+  "homepage": "https://github.com/felix-syl/md-reader-paper",
+  "main": "./extension.js",
+  "contributes": {
+    "customEditors": [
+      {
+        "viewType": "mdReader.preview",
+        "displayName": "MD Reader Paper",
+        "selector": [
+          {
+            "filenamePattern": "*.md"
+          },
+          {
+            "filenamePattern": "*.markdown"
+          }
+        ],
+        "priority": "option"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "node scripts/copy-assets.js",
+    "package": "node scripts/copy-assets.js && vsce package"
+  },
+  "dependencies": {
+    "katex": "^0.18.1",
+    "marked": "^14.1.0"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^3.0.0"
+  }
+}
