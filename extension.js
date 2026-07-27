@@ -66,9 +66,36 @@ const blockMathExtension = {
 
 marked.use({ extensions: [inlineMathExtension, blockMathExtension] });
 
+// Decode single-line JSON blocks embedded by CodeBuddy chat exports, e.g.
+// {"type":"reasoning","text":"...\n..."} — their newlines are literal escape
+// sequences and would render as one long string. Convert them to blockquotes.
+// Lines inside fenced code blocks are left untouched.
+function decodeEmbeddedJson(text) {
+  let inFence = false;
+  return text.split('\n').map((line) => {
+    const trimmed = line.trim();
+    if (/^(```|~~~)/.test(trimmed)) {
+      inFence = !inFence;
+      return line;
+    }
+    if (inFence || !trimmed.startsWith('{"type"')) return line;
+    let obj;
+    try {
+      obj = JSON.parse(trimmed);
+    } catch (e) {
+      return line;
+    }
+    if (typeof obj.text !== 'string') return line;
+    const label = obj.type === 'reasoning' ? '思考过程' : obj.type;
+    const body = obj.text.replace(/\r\n/g, '\n');
+    const quoted = body.split('\n').map((l) => (l ? `> ${l}` : '>')).join('\n');
+    return `> **${label}**\n>\n${quoted}`;
+  }).join('\n');
+}
+
 function renderMarkdown(text) {
   try {
-    return marked.parse(text || '');
+    return marked.parse(decodeEmbeddedJson(text || ''));
   } catch (e) {
     return `<p>渲染失败：${e.message}</p>`;
   }
@@ -106,9 +133,6 @@ function getHtml(webview, mediaRoot, bodyHtml, title) {
 <title>${title}</title>
 </head>
 <body>
-  <div class="toolbar">
-    <span class="title">${title}</span>
-  </div>
   <div id="content">
     <div class="page">${bodyHtml}</div>
   </div>
