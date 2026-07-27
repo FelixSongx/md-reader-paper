@@ -1,5 +1,6 @@
 .vscode/**
 scripts/**
+temp_picture/**
 *.vsix
 **/*.map
 .gitignore
