@@ -66,6 +66,25 @@ const blockMathExtension = {
 
 marked.use({ extensions: [inlineMathExtension, blockMathExtension] });
 
+// Add anchor ids to headings so the in-page TOC can jump to them.
+let slugCounts = {};
+function slugify(text) {
+  const base = text.replace(/<[^>]*>/g, '').trim().toLowerCase()
+    .replace(/[^\w一-鿿-]+/g, '-').replace(/^-+|-+$/g, '') || 'section';
+  const n = (slugCounts[base] || 0) + 1;
+  slugCounts[base] = n;
+  return n > 1 ? `${base}-${n}` : base;
+}
+
+marked.use({
+  renderer: {
+    heading({ tokens, depth }) {
+      const html = this.parser.parseInline(tokens);
+      return `<h${depth} id="${slugify(html)}">${html}</h${depth}>\n`;
+    }
+  }
+});
+
 // Decode single-line JSON blocks embedded by CodeBuddy chat exports, e.g.
 // {"type":"reasoning","text":"...\n..."} — their newlines are literal escape
 // sequences and would render as one long string. Convert them to blockquotes.
@@ -95,6 +114,7 @@ function decodeEmbeddedJson(text) {
 
 function renderMarkdown(text) {
   try {
+    slugCounts = {};
     return marked.parse(decodeEmbeddedJson(text || ''));
   } catch (e) {
     return `<p>渲染失败：${e.message}</p>`;

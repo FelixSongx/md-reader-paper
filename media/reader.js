@@ -122,4 +122,48 @@
   });
   bar.querySelector('.find-prev').addEventListener('click', function () { jump(current - 1); });
   bar.querySelector('.find-next').addEventListener('click', function () { jump(current + 1); });
+
+  // ---- Table of contents (heading jump) ----
+  const headings = Array.from(
+    document.querySelectorAll('.page h1[id], .page h2[id], .page h3[id], .page h4[id]')
+  );
+  if (headings.length > 1) {
+    const toc = document.createElement('nav');
+    toc.className = 'toc';
+    const tocTitle = document.createElement('div');
+    tocTitle.className = 'toc-title';
+    tocTitle.textContent = '目录';
+    toc.appendChild(tocTitle);
+    const list = document.createElement('ul');
+    const links = [];
+    headings.forEach(function (h) {
+      const li = document.createElement('li');
+      li.className = 'toc-' + h.tagName.toLowerCase();
+      const a = document.createElement('a');
+      a.textContent = h.textContent;
+      a.href = '#' + h.id;
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        h.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      li.appendChild(a);
+      list.appendChild(li);
+      links.push(a);
+    });
+    toc.appendChild(list);
+    document.body.appendChild(toc);
+
+    // Highlight the section currently in view
+    function spy() {
+      let active = 0;
+      headings.forEach(function (h, i) {
+        if (h.getBoundingClientRect().top <= 80) active = i;
+      });
+      links.forEach(function (a, i) {
+        a.classList.toggle('active', i === active);
+      });
+    }
+    document.addEventListener('scroll', spy, { passive: true });
+    spy();
+  }
 })();

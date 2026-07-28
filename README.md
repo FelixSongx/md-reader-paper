@@ -22,6 +22,7 @@ To make MD Reader the default for Markdown files, add to your settings:
 - Inline code as pink pills, clean tables with gray headers
 - KaTeX math: inline `\( ... \)` and block `\[ ... \]`
 - `Ctrl+F` in-page keyword search with match highlighting
+- Table of contents panel with click-to-jump and scroll highlighting
 - External links open in your system browser
 - Re-renders automatically when the file changes on disk
 
