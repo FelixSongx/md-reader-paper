@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.0.3
+
+- Add a table-of-contents panel (h1–h4) with click-to-jump and scroll highlighting; auto-hides on narrow windows.
+
 ## 1.0.2
 
 - Fix broken KaTeX sub/superscripts and fractions (CSP now allows inline styles, which KaTeX relies on for positioning).
