@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.0.4
+
+- Dark color theme: follows the VS Code color theme automatically — dark paper/workspace with adjusted pink/teal accents; find bar, TOC panel and search highlights get dark variants too.
+
 ## 1.0.3
 
 - Add a table-of-contents panel (h1–h4) with click-to-jump and scroll highlighting; auto-hides on narrow windows.

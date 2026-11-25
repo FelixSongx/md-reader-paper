@@ -23,6 +23,7 @@ To make MD Reader the default for Markdown files, add to your settings:
 - KaTeX math: inline `\( ... \)` and block `\[ ... \]`
 - `Ctrl+F` in-page keyword search with match highlighting
 - Table of contents panel with click-to-jump and scroll highlighting
+- Dark mode: follows your VS Code color theme automatically
 - External links open in your system browser
 - Re-renders automatically when the file changes on disk
 
