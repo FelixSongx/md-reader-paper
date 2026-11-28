@@ -3,6 +3,9 @@
 ## 1.0.4
 
 - Dark color theme: follows the VS Code color theme automatically — dark paper/workspace with adjusted pink/teal accents; find bar, TOC panel and search highlights get dark variants too.
+- Inline code in dark mode shows colored text only (no pill background).
+- Fit-to-window page width by default, keeping the TOC visible; `−/+` control switches to a fixed mm width (140–1000mm), click the label to return to fit mode; setting is remembered per tab.
+- TOC auto-scrolls so the active entry stays visible, and hides itself whenever the page would render underneath it.
 
 ## 1.0.3
 
